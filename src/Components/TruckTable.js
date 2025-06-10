@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function TruckTable({ trucks, onComplete, onMoveToLoading, title }) {
-  if (trucks.length === 0) return <p>No trucks found.</p>;
+  if (trucks.length === 0) return <p></p>;
 
   return (
     <div className="container px-2">
