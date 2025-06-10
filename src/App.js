@@ -91,10 +91,10 @@ function App() {
 
 export default App;*/
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import TruckDashboard from "./Components/TruckDashboard";
 import LandingDashboard from "./Components/LandingDashboard";
-import LoginForm from "./Components/LoginForm";
+
 
 function App() {
   const [trucks, setTrucks] = useState([]);
