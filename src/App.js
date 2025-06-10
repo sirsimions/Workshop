@@ -110,7 +110,7 @@ function App() {
   }, []);
 
   const fetchTrucks = () => {
-    fetch("http://localhost:3000/truckshow")
+    fetch("https://workshopback-rk2x.onrender.com/truckshow")
       .then((res) => res.json())
       .then((data) => setTrucks(data))
       .catch((err) => console.error("Fetch error:", err));
@@ -120,14 +120,16 @@ function App() {
     sessionStorage.setItem("workshopLoggedIn", "true");
     setLoggedIn(true);
   };
+  console.log(handleLogin)
 
   const handleLogout = () => {
     sessionStorage.removeItem("workshopLoggedIn");
     setLoggedIn(false);
   };
+  console.log(handleLogout)
 
   const handleAdd = (truck) => {
-    fetch("http://localhost:3000/truckcreate", {
+    fetch("https://workshopback-rk2x.onrender.com/truckcreate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -142,11 +144,11 @@ function App() {
       .then(() => fetchTrucks())
       .catch((err) => console.error("Add error:", err));
   };
-  
+
 
   const handleComplete = (id) => {
     if (!loggedIn) return;
-    fetch(`http://localhost:3000/truckcomplete/${id}`, {
+    fetch(`https://workshopback-rk2x.onrender.com/truckcomplete/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -161,10 +163,10 @@ function App() {
       .then(() => fetchTrucks())
       .catch((err) => console.error("Complete error:", err));
   };
-  
+
   const handleMoveToLoading = (truck) => {
     if (!loggedIn) return;
-    fetch("http://localhost:3000/loadings", {
+    fetch("https://workshopback-rk2x.onrender.com/loadings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -177,7 +179,7 @@ function App() {
         return res.json();
       })
       .then(() =>
-        fetch(`http://localhost:3000/truckdelete/${truck.id}`, {
+        fetch(`https://workshopback-rk2x.onrender.com/truckdelete/${truck.id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("workshopToken")}`,
@@ -194,33 +196,33 @@ function App() {
       })
       .catch((err) => console.error("Move to Loading error:", err));
   };
-  
+
 
   return (
     <div className="container p-4">
       {!loggedIn ? (
-  <>
-    <LandingDashboard trucks={trucks} setLoggedIn={setLoggedIn} />
-  </>
-) : (
-  <>
-    <TruckDashboard
-      trucks={trucks}
-      onAddTruck={handleAdd}
-      onComplete={handleComplete}
-      onMoveToLoading={handleMoveToLoading}
-    />
-    <button
-      onClick={() => {
-        sessionStorage.clear();
-        setLoggedIn(false);
-      }}
-      className="btn btn-secondary mt-4"
-    >
-      Logout
-    </button>
-  </>
-)}
+        <>
+          <LandingDashboard trucks={trucks} setLoggedIn={setLoggedIn} />
+        </>
+      ) : (
+        <>
+          <TruckDashboard
+            trucks={trucks}
+            onAddTruck={handleAdd}
+            onComplete={handleComplete}
+            onMoveToLoading={handleMoveToLoading}
+          />
+          <button
+            onClick={() => {
+              sessionStorage.clear();
+              setLoggedIn(false);
+            }}
+            className="btn btn-secondary mt-4"
+          >
+            Logout
+          </button>
+        </>
+      )}
 
     </div>
   );
