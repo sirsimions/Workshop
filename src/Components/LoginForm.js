@@ -28,7 +28,7 @@ function LoginForm({ onLogin }) {
 
   return (
     <form onSubmit={handleSubmit} className="mb-4">
-      <h5>Workshop Manager Login</h5>
+      <h5>Managers Login</h5>
       <input
         type="email"
         value={email}

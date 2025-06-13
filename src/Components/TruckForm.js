@@ -94,7 +94,7 @@ function TruckForm({ onAdd }) {
         <div className="col-md-4">
           <label className="form-label">Amount (Ksh)</label>
           <input
-            type="number"
+            type="text"
             name="amount"
             className="form-control"
             placeholder="e.g., 45000"
