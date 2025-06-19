@@ -86,6 +86,7 @@ function TruckTable({ trucks, onComplete, onMoveToLoading, title }) {
               <th>Supplier</th>
               <th>Amount (Ksh)</th>
               <th>Deadline</th>
+              <th>Created</th>
               {(onComplete || onMoveToLoading) && <th>W/S Status</th>}
             </tr>
           </thead>
@@ -104,6 +105,7 @@ function TruckTable({ trucks, onComplete, onMoveToLoading, title }) {
                 <td>{truck.supplier}</td>
                 <td>{truck.amount.toLocaleString()}</td>
                 <td>{truck.deadline}</td>
+                <td>{truck.updated_at}</td>
                 {(onComplete || onMoveToLoading) && (
                   <td>
                     {!truck.completed && onComplete && (
