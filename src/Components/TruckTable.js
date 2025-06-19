@@ -105,7 +105,13 @@ function TruckTable({ trucks, onComplete, onMoveToLoading, title }) {
                 <td>{truck.supplier}</td>
                 <td>{truck.amount.toLocaleString()}</td>
                 <td>{truck.deadline}</td>
-                <td>{truck.updated_at}</td>
+                <td>{new Date(truck.updated_at).toLocaleString("en-GB", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}</td>
                 {(onComplete || onMoveToLoading) && (
                   <td>
                     {!truck.completed && onComplete && (
